@@ -1,4 +1,4 @@
-name: Build ZDC.Web
+name: Build ZDC.Discord
 on:
   push:
     branches:
