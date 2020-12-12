@@ -62,8 +62,11 @@ namespace ZDC.Discord.Data.Jobs
                 // Ensure guild exists
                 if (guild == null) continue;
 
+                // Get user id from sync
+                var id = ulong.Parse(sync.Discord);
+
                 // Get user from guild
-                var guildUser = guild.Users.FirstOrDefault(x => x.Id == ulong.Parse(sync.Discord));
+                var guildUser = guild.GetUser(id);
 
                 // Get rating role
                 var role = guildUser.Roles
@@ -78,6 +81,7 @@ namespace ZDC.Discord.Data.Jobs
                 else
                 {
                     // Else get role they should have and add them
+                    await DiscordService.SetRatingsRole(guild, guildUser, user);
                 }
 
             }

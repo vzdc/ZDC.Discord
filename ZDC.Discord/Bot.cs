@@ -33,8 +33,14 @@ namespace ZDC.Discord
         /// </summary>
         public async Task ConfigureBot()
         {
+            // Create bot config
+            var config = new DiscordSocketConfig
+            {
+                AlwaysDownloadUsers = true
+            };
+
             // Create the bot object
-            _client = new DiscordSocketClient();
+            _client = new DiscordSocketClient(config);
 
             // Get the token
             var token = _configuration.GetValue<string>("DiscordToken");
