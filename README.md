@@ -3,7 +3,8 @@
 
 ## Build Status
 
-![Build ZDC.Discord](https://github.com/vzdc/ZDC.Discord/workflows/Build%20ZDC.Web/badge.svg?branch=master)
+![Build ZDC.Discord](https://github.com/vzdc/ZDC.Discord/workflows/Build%20ZDC.Discord/badge.svg)
+![CodeQL](https://github.com/vzdc/ZDC.Discord/workflows/CodeQL/badge.svg)
 
 ## Requirements
 
