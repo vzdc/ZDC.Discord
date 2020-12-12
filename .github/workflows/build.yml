@@ -26,37 +26,3 @@ jobs:
       if: always()
       with:
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
-  Deploy:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET 5.0
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Install Dependencies
-      run: dotnet restore
-    - name: Dotnet Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Send Status To Discord
-      uses: sarisia/actions-status-discord@v1
-      if: always()
-      with:
-        webhook: ${{ secrets.DISCORD_WEBHOOK }}
-    - name: Deploy To Server
-      uses: easingthemes/ssh-deploy@v2.1.5
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SOURCE: "ZDC.Web/bin/Release/net5.0/"
-        REMOTE_HOST: ${{ secrets.SSH_HOST }}
-        REMOTE_USER: ${{ secrets.SSH_USER }}
-        TARGET: "/var/www/ZDC.Web"
-    - name: Restart Web Service
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: systemctl restart zdc
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USER }}
-        passphrase: ${{ secrets.PASSWORD }}
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
