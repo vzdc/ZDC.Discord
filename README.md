@@ -1,5 +1,5 @@
 
-# vZDC Website
+# vZDC Discord
 
 ## Build Status
 
